@@ -23,6 +23,9 @@
         - [*7.1 normal模式下复制粘贴*](#71-normal%E6%A8%A1%E5%BC%8F%E4%B8%8B%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4)
         - [*7.2 什么是Vim寄存器*](#72-%E4%BB%80%E4%B9%88%E6%98%AFvim%E5%AF%84%E5%AD%98%E5%99%A8)
         - [*7.3 深入寄存器register*](#73-%E6%B7%B1%E5%85%A5%E5%AF%84%E5%AD%98%E5%99%A8register)
+    - [*8. 强大的Vim宏（macro）*](#8-%E5%BC%BA%E5%A4%A7%E7%9A%84vim%E5%AE%8Fmacro)
+    - [*9. Vim的补全方法*](#9-vim%E7%9A%84%E8%A1%A5%E5%85%A8%E6%96%B9%E6%B3%95)
+    - [* 10. 修改Vim配色*](#-10-%E4%BF%AE%E6%94%B9vim%E9%85%8D%E8%89%B2)
 
 <!-- /TOC -->
 # *vim 学习笔记*
@@ -154,4 +157,29 @@ normal模式下：
 ### *7.3 深入寄存器(register)*
 - Vim不使用单一剪贴板进行剪贴、复制和粘贴，而是使用多组寄存器
 - 通过双引号`"{register}`前缀可以指定寄存器，不指定则使用默认的无名寄存器
-- 
+
+
+## *8. 强大的Vim宏（macro）*
+- 宏的使用分为录制和回放
+- vim使用q来录制，同时也是q来结束录制
+- 使用q{register}选择要保存的寄存器，把录制的命令保存其中
+- 使用@{register}回放寄存器中保存的一系列命令
+- V选择一行，使用G全选剩下的，然后在命令行模式下：normal 就是使用normal模式下的命令， `:normal @{register}` 就可以将剩下的全部执行记录下的宏。
+
+## *9. Vim的补全方法*
+
+![](images/2021-02-18-10-58-24.png)
+- 常用的三种补全方法
+    - 使用`ctrl + n` 和 `ctrl + p` 补全单词
+    - 使用`ctrr + x` 和 `ctrl + f` 来补全文件名
+    - 使用`ctrl + x` 和 ` ctrl + o`补全代码，需要安装插件
+
+## *10. 修改Vim配色*
+- `:colorscheme` 显示当前主题配色
+
+- `:colorscheme <ctrl+d>` 显示所有配色
+
+- `:colorscheme <name>` 修改配色
+
+- `vim file1 file2 -O` 分窗口打开文件名所涉及的文件
+
