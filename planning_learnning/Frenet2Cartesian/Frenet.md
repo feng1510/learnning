@@ -2,7 +2,7 @@
  * @Date: 2021-03-13 01:23:08
  * @Author: Zhiqi Feng
  * @LastEditors: feng 
- * @LastEditTime: 2021-03-13 06:22:23
+ * @LastEditTime: 2021-03-13 06:25:44
  * @FilePath: /learnning/planning_learnning/Frenet2Cartesian/Frenet.md
 -->
 <!-- TOC -->
@@ -10,7 +10,6 @@
 - [Frenet坐标系与Cartesian坐标系互转](#frenet坐标系与cartesian坐标系互转)
   - [一、Frenet坐标系与Cartesian坐标系的转换公式简单推导](#一frenet坐标系与cartesian坐标系的转换公式简单推导)
   - [二、转换公式](#二转换公式)
-  - [- $l^{''}$ : Frenet横向坐标对纵向坐标的二次导数；](#--l--frenet横向坐标对纵向坐标的二次导数)
     - [2.1 $\vec{x} = [x_x, y_x]$推导$[s, l]$](#21-vecx--x_x-y_x推导s-l)
 
 <!-- /TOC -->
@@ -76,7 +75,7 @@ Cartesian坐标系: $[\vec{x}, v_{x}, a_{x},\theta_{x}, \kappa_{x}]$
 - $\ddot{l} = \frac{d\dot{l}}{t}$ : Frenet横向加速度；
 - $l^{'}$ : Frenet横向坐标对纵向坐标的导数；
 - $l^{''}$ : Frenet横向坐标对纵向坐标的二次导数；
---------------
+
 
 - $\vec{x}$：为对应Cartesian坐标系下的坐标，是一个向量；
 - $\theta_{x}$：Cartesian坐标系下的朝向；
