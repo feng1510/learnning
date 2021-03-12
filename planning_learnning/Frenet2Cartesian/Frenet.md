@@ -2,7 +2,7 @@
  * @Date: 2021-03-13 01:23:08
  * @Author: Zhiqi Feng
  * @LastEditors: feng 
- * @LastEditTime: 2021-03-13 06:25:44
+ * @LastEditTime: 2021-03-13 07:32:47
  * @FilePath: /learnning/planning_learnning/Frenet2Cartesian/Frenet.md
 -->
 <!-- TOC -->
@@ -11,6 +11,8 @@
   - [一、Frenet坐标系与Cartesian坐标系的转换公式简单推导](#一frenet坐标系与cartesian坐标系的转换公式简单推导)
   - [二、转换公式](#二转换公式)
     - [2.1 $\vec{x} = [x_x, y_x]$推导$[s, l]$](#21-vecx--x_x-y_x推导s-l)
+    - [2.2 已知$\vec{x}=[x_x, y_x], \theta_x, v_x$推导$[s, l, \dot{s}, l^{'}]$](#22-已知vecxx_x-y_x-theta_x-v_x推导s-l-dots-l)
+    - [2.3 已知$\vec{x}=[x_x, y_x], \theta_x, v_x, a_x, \kappa_x$推导$[s, l, \dot{s}, l^{'}, \ddot{s}, l^{''}]$](#23-已知vecxx_x-y_x-theta_x-v_x-a_x-kappa_x推导s-l-dots-l-ddots-l)
 
 <!-- /TOC -->
 # Frenet坐标系与Cartesian坐标系互转
@@ -99,3 +101,13 @@ $$l = (\vec{x}-\vec{r})^{T}\vec{N}_r=||\vec{x}-\vec{r}||_2cos(\theta_{x-r} - (\t
 $\frac{sin(\theta_{x-r})}{cos(\theta_{x-r})}=\frac{y_x-y_r}{x_x-x_r}$,所以根据$(y_x-y_r)cos(\theta_r)-(x_x-x_r)sin(\theta_r)$的正负来判断l的正负
 $$l=sign((y_x-y_r)cos(\theta_r)-(x_x-x_r)sin(\theta_r))\sqrt{(x_x-x_r)^2+(y_x-y_r)^2}$$
 
+### 2.2 已知$\vec{x}=[x_x, y_x], \theta_x, v_x$推导$[s, l, \dot{s}, l^{'}]$
+
+![](images/2021-03-13-06-45-42.png)
+![](images/2021-03-13-06-45-59.png)
+
+### 2.3 已知$\vec{x}=[x_x, y_x], \theta_x, v_x, a_x, \kappa_x$推导$[s, l, \dot{s}, l^{'}, \ddot{s}, l^{''}]$
+
+![](images/2021-03-13-07-32-25.png)
+
+![](images/2021-03-13-07-32-47.png)
