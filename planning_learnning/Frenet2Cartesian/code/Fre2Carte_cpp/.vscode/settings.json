@@ -1,7 +1,7 @@
 {
-    "python.pythonPath": "/home/feng/anaconda3/envs/highway_env/bin/python",
     "files.associations": {
-        "dense": "cpp",
+        "core": "cpp",
+        "ostream": "cpp",
         "cctype": "cpp",
         "clocale": "cpp",
         "cmath": "cpp",
@@ -47,7 +47,6 @@
         "memory": "cpp",
         "mutex": "cpp",
         "new": "cpp",
-        "ostream": "cpp",
         "numeric": "cpp",
         "sstream": "cpp",
         "stdexcept": "cpp",
