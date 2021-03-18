@@ -2,7 +2,7 @@
  * @Date: 2021-03-14 06:29:39
  * @Author: Zhiqi Feng
  * @LastEditors: feng 
- * @LastEditTime: 2021-03-15 18:51:17
+ * @LastEditTime: 2021-03-16 00:22:13
  * @FilePath: /Fre2Carte_cpp/src/main.cpp
  */
 
@@ -117,12 +117,6 @@ int main() {
                 double dd = polyfit(dCoeffs.back(), t, 1);
                 double ddd = polyfit(dCoeffs.back(), t, 2);
                 d_condition[0] = d;
-                if(dd < 1e-6 && dd >-1e-6) {
-                    d_condition[1] = 0;
-                }
-                else if(s_condition[1] < 1e-6 && s_condition[1] >-1e-6) {
-                    d_condition[1] = 0;
-                }
                 d_condition[1] = dd/s_condition[1];
                 d_condition[2] = (ddd*s_condition[1] - dd*s_condition[2])/(pow(s_condition[1], 3));
 
@@ -154,7 +148,7 @@ int main() {
                 double ptr_y; 
                 double ptr_theta; 
                 double ptr_kappa;
-                double ptr_v; 
+                double ptr_v;
                 double ptr_a;
 
                 map.transFrenet2Cartesian(s, d, s_condition, d_condition, &ptr_x,
@@ -163,7 +157,7 @@ int main() {
                 
                 drawFigure(figureCartesian, Pointxy(ptr_x, ptr_y), startPtrCartesian, Scalar(255,255,0));
 
-                std::cout << ptr_a << "  " << ptr_v << "  " << ptr_kappa << std::endl << std::endl;
+                std::cout << ptr_a << "  " << ptr_v << "  " << ptr_kappa << std::endl;
             }
         }
     }
