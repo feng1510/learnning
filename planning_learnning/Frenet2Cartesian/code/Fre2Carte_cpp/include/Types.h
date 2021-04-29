@@ -139,6 +139,12 @@ struct Blank_block
     Blank_block(int id = -1, int d_id = 0, double d = 0, double s = 0, double length = 0, bool egoFlag = false, double cost_sum = 0, double score_sum = 0) : id(id), d_id(d_id), d(d), s(s), length(length), egoFlag(egoFlag), cost_sum(cost_sum), score_sum(score_sum) {}
 };
 
+struct TrajLogData {
+	Eigen::VectorXd sData {Eigen::VectorXd::Zero(6)};
+	Eigen::VectorXd dData {Eigen::VectorXd::Zero(6)};
+	double duration;
+	TrajLogData(double duration_ = 0.0) : duration(duration_) {}
+};
 
 
 #endif // TYPES_H

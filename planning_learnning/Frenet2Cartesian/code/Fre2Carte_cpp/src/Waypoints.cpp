@@ -133,20 +133,38 @@ double Waypoints::ComputeCurvature(double dx, double ddx, double dy, double ddy)
 	double norm_square = dx*dx+dy*dy;
 	double norm = sqrt(norm_square);
 	double b = norm*norm_square;
-	if(b < 1e-6 && b > -1e-6) {
-		return 1e6;
+	double ans = a/b;
+	if(std::isnan(ans)) {
+		ans = 0.0;
 	}
-	return a/b;
+	else if(std::isinf(ans)) {
+		if(ans < 0) {
+			ans = -1e6;
+		}
+		else {
+			ans = 1e6;
+		}
+	}
+	return ans;
 }
 double Waypoints::ComputeCurvatureDerivative(double dx, double ddx, double dddx, double dy, double ddy, double dddy) {
 	double a = dx*ddy-dy*ddx;
 	double b = dx*dddy-dy*dddx;
 	double c = dx*ddx+dy*ddy;
 	double d = dx*dx+dy*dy;
-	if(d < 1e-6 && d > -1e-6) {
-		return 1e6;
+	double ans = (b*d-3.0*a*c)/(d*d*d);
+	if(std::isnan(ans)) {
+		ans = 0.0;
 	}
-	return (b*d-3.0*a*c)/(d*d*d);
+	else if(std::isinf(ans)) {
+		if(ans < 0) {
+			ans = -1e6;
+		}
+		else {
+			ans = 1e6;
+		}
+	}
+	return ans;
 }
 
 /**
@@ -157,6 +175,7 @@ double Waypoints::ComputeCurvatureDerivative(double dx, double ddx, double dddx,
  */
 Eigen::Vector2d Waypoints::getCurvature(double s) {
 	double dx, ddx, dddx, dy, ddy, dddy;
+	s = NormalizeS(s);
 	dx 		= m_x_spline.deriv(1, s);
 	ddx 	= m_x_spline.deriv(2, s);
 	dddx 	= m_x_spline.deriv(3, s);
@@ -167,7 +186,7 @@ Eigen::Vector2d Waypoints::getCurvature(double s) {
 
 	Eigen::Vector2d kappa_r_dr(0.0, 0.0);
 	kappa_r_dr(0) = ComputeCurvature(dx,ddx,dy,ddy);
-	kappa_r_dr(1) = ComputeCurvatureDerivative(dx,ddx, ddx,dy,ddy,dddy);
+	kappa_r_dr(1) = ComputeCurvatureDerivative(dx,ddx, dddx,dy,ddy,dddy);
 	return kappa_r_dr;
 }
 
@@ -188,8 +207,8 @@ void Waypoints::transFrenet2Cartesian(double s, double d,
 	double ry = m_y_spline(s);
 	double rtheta = std::atan2(m_y_spline.deriv(1, s), m_x_spline.deriv(1, s));
 	frenet_to_cartesian(s, rx, ry, rtheta, kappa(0), kappa(1), s_condition, d_condition, ptr_x, ptr_y, ptr_theta, ptr_kappa, ptr_v, ptr_a);
-
 }
+
 void Waypoints::frenet_to_cartesian(const double rs, const double rx, const double ry, const double rtheta,
 						const double rkappa, const double rdkappa,
 						const std::array<double, 3>& s_condition,
@@ -202,9 +221,11 @@ void Waypoints::frenet_to_cartesian(const double rs, const double rx, const doub
 
 	const double cos_theta_r = m_x_spline.deriv(1, rs);
 	const double sin_theta_r = m_y_spline.deriv(1, rs);
-
-	*ptr_x = rx - sin_theta_r * d_condition[0];
-	*ptr_y = ry + cos_theta_r * d_condition[0];
+	Pointxy ptxy = GetXYInterpolated(s_condition[0], d_condition[0]);
+	*ptr_x = ptxy.x;
+	*ptr_y = ptxy.y;
+	// *ptr_x = rx - sin_theta_r * d_condition[0];
+	// *ptr_y = ry + cos_theta_r * d_condition[0];
 
 	const double one_minus_kappa_r_d = 1 - rkappa * d_condition[0];
 
@@ -222,7 +243,7 @@ void Waypoints::frenet_to_cartesian(const double rs, const double rx, const doub
 					rkappa) *
 				cos_delta_theta / (one_minus_kappa_r_d);
 	
-	std::cout << d_condition[2] << " " << kappa_r_d_prime << "  " << tan_delta_theta << "  " << cos_delta_theta << "  " << cos_delta_theta << "  "  << one_minus_kappa_r_d << "  "  << rkappa << "  " << cos_delta_theta << " " << one_minus_kappa_r_d << "  ";
+	// std::cout << d_condition[2] << " " << kappa_r_d_prime << "  " << tan_delta_theta << "  " << cos_delta_theta << "  " << cos_delta_theta << "  "  << one_minus_kappa_r_d << "  "  << rkappa << "  " << cos_delta_theta << " " << one_minus_kappa_r_d << "  ";
 
 	const double d_dot = d_condition[1] * s_condition[1];
 	*ptr_v = std::sqrt(one_minus_kappa_r_d * one_minus_kappa_r_d *

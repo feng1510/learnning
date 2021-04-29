@@ -102,92 +102,143 @@ def frenet_to_cartesian1D(rs, rx, ry, rtheta, s_condition, d_condition):
     y = ry + cos_theta_r * d_condition[0]    
 
     return x, y
-t = np.linspace(0, 10, 1000)
+t = np.linspace(0, 15.71, 1000)
 left_bound = []
 right_bound = []
 
-for i in range(1000):
-    rs = snew[i]
-    rx = fx(rs)
-    ry = fy(rs)
+# for i in range(1000):
+#     rs = snew[i]
+#     rx = fx(rs)
+#     ry = fy(rs)
     
-    drx = dfx(rs)
-    dry = dfy(rs)
+#     drx = dfx(rs)
+#     dry = dfy(rs)
     
-    rtheta = atan2(dry, drx)
+#     rtheta = atan2(dry, drx)
     
-    l_s_condition = np.array([rs])
-    l_d_condition = np.array([1.5])
-    lx, ly = frenet_to_cartesian1D(rs, rx, ry, rtheta, l_s_condition, l_d_condition)
-    left_bound.append(np.array([lx, ly]))
+#     l_s_condition = np.array([rs])
+#     l_d_condition = np.array([1.5])
+#     lx, ly = frenet_to_cartesian1D(rs, rx, ry, rtheta, l_s_condition, l_d_condition)
+#     left_bound.append(np.array([lx, ly]))
     
-    r_s_condition = np.array([rs])
-    r_d_condition = np.array([-1.5])
-    rx, ry = frenet_to_cartesian1D(rs, rx, ry, rtheta, r_s_condition, r_d_condition)   
-    right_bound.append(np.array([rx, ry]))
-left_bound = np.array(left_bound)
-right_bound = np.array(right_bound)
+#     r_s_condition = np.array([rs])
+#     r_d_condition = np.array([-1.5])
+#     rx, ry = frenet_to_cartesian1D(rs, rx, ry, rtheta, r_s_condition, r_d_condition)   
+#     right_bound.append(np.array([rx, ry]))
+# left_bound = np.array(left_bound)
+# right_bound = np.array(right_bound)
 
-plt.plot(newx, newy, 'y')
-plt.plot(left_bound[:,0],left_bound[:,1], 'b')
-plt.plot(right_bound[:,0],right_bound[:,1], 'b')
+# plt.plot(newx, newy, 'y')
+# plt.plot(left_bound[:,0],left_bound[:,1], 'b')
+# plt.plot(right_bound[:,0],right_bound[:,1], 'b')
 
 targets = []
-for i in range(11):
+for i in range(5):
     x0 = 0
     dx0 = 0 #np.tan(np.pi/6)
-    x1 = -1.5 + i * 0.3
+    x1 = -1.2 + i * 0.6
     dx1 = 0    
     targets.append(np.array([x0, dx0, x1, dx1]))
 
 thetas_buf = []
 kappas_buf = []
-for i in range(11):
-    tar = targets[i]
-    coeffs = cubicPolyCurve1d(tar[0], tar[1], tar[2], tar[3], 10.0)
-    traj = []
-    theta_buf = []
-    kappa_buf = []
-    for j in range(1000):
-        rs = t[j]
-        rx = fx(rs)
-        ry = fy(rs)
-        drx = dfx(rs)
-        dry = dfy(rs)
-        ddrx = ddfx(rs)
-        ddry = ddfy(rs)
-        dddrx = dddfx(rs)
-        dddry = dddfy(rs)
-        rtheta = atan2(dry, drx)
-        rkappa = ComputeCurvature(drx, ddrx, dry, ddry)
-        rdkappa = ComputeCurvatureDerivative(drx, ddrx, dddrx, dry, ddry, dddry)
+# for i in range(5):
+#     tar = targets[i]
+#     coeffs = cubicPolyCurve1d(tar[0], tar[1], tar[2], tar[3], 15.71)
+#     traj = []
+#     theta_buf = []
+#     kappa_buf = []
+#     for j in range(1000):
+#         rs = t[j]
+#         rx = fx(rs)
+#         ry = fy(rs)
+#         drx = dfx(rs)
+#         dry = dfy(rs)
+#         ddrx = ddfx(rs)
+#         ddry = ddfy(rs)
+#         dddrx = dddfx(rs)
+#         dddry = dddfy(rs)
+#         rtheta = atan2(dry, drx)
+#         rkappa = ComputeCurvature(drx, ddrx, dry, ddry)
+#         rdkappa = ComputeCurvatureDerivative(drx, ddrx, dddrx, dry, ddry, dddry)
         
-        l = polyfit(coeffs, t[j], 0)
-        dl = polyfit(coeffs, t[j], 1)
+#         l = polyfit(coeffs, t[j], 0)
+#         dl = polyfit(coeffs, t[j], 1)
         
-        theta = CalculateTheta(rtheta, rkappa, l, dl)
-        theta_buf.append(theta)
+#         theta = CalculateTheta(rtheta, rkappa, l, dl)
+#         theta_buf.append(theta)
         
-        ddl = polyfit(coeffs, t[j], 2)
+#         ddl = polyfit(coeffs, t[j], 2)
         
-        kappa = CalculateKappa(rkappa, rdkappa, l, dl, ddl)
-        kappa_buf.append(kappa)
+#         kappa = CalculateKappa(rkappa, rdkappa, l, dl, ddl)
+#         kappa_buf.append(kappa)
         
-        s_condition = np.array([rs])
-        d_condition = np.array([l])
-        x, y = frenet_to_cartesian1D(rs, rx, ry, rtheta, s_condition, d_condition)
-        traj.append(np.array([x, y]))
-    thetas_buf.append(np.array(theta_buf))
-    kappas_buf.append(np.array(kappa_buf))
-    traj = np.array(traj)
-    plt.plot(traj[:,0], traj[:,1], 'g')
-plt.show()
-for i in range(11):
-    plt.plot(thetas_buf[i])   
-plt.show()
+#         s_condition = np.array([rs])
+#         d_condition = np.array([l])
+#         x, y = frenet_to_cartesian1D(rs, rx, ry, rtheta, s_condition, d_condition)
+#         traj.append(np.array([x, y]))
+#     thetas_buf.append(np.array(theta_buf))
+#     kappas_buf.append(np.array(kappa_buf))
+#     traj = np.array(traj)
+#     plt.plot(traj[:,0], traj[:,1], 'g')
+
+# for i in range(5):
+#     T = 15
+#     x0 = 5
+#     dx0 = 0
+#     x1 = -5 - 1.2 + 0.6*i;
+#     dx1 = 0;
+#     dcoeffs = cubicPolyCurve1d(x0, dx0, x1, dx1, T)
+
+#     x0 = 0
+#     dx0 = 1
+#     x1 = 0
+#     dx1 = -1;
+#     scoeffs = cubicPolyCurve1d(x0, dx0, x1, dx1, T)
+#     traj = []
+
+#     for j in range(1000):
+#         t = 0.015 * j
+#         d = polyfit(dcoeffs, t, 0)
+#         s = polyfit(scoeffs, t, 0)
+#         traj.append(np.array([d, s]))
+#     traj = np.array(traj)
+#     plt.plot(traj[:,0], traj[:,1], 'k')
 
 
-for i in range(11):
-    plt.plot(kappas_buf[i])   
+
+# plt.show()
+# for i in range(11):
+#     plt.plot(thetas_buf[i])   
+# plt.show()
+
+
+# for i in range(11):
+#     plt.plot(kappas_buf[i])   
+# plt.show()
+
+ycoeffs = np.zeros(4)
+ycoeffs[0] = 10
+ycoeffs[1] = 12
+ycoeffs[2] = -7
+ycoeffs[3] = 1
+
+xcoeffs = np.zeros(4)
+xcoeffs[0] = 0
+xcoeffs[1] = 7
+xcoeffs[2] = 0
+xcoeffs[3] = 0
+
+xyX = []
+xyY = []
+left_bound = []
+right_bound = []
+t = 0
+for i in range(6000):
+    t = i*0.001
+    xyX.append(polyfit(xcoeffs, t, 0))
+    xyY.append(polyfit(ycoeffs, t, 0))
+plt.plot(xyX, xyY)   
+plt.axis('equal')
 plt.show()
 

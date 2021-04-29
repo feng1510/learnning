@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Fre2Carte.dir/src/TrajLog.cpp.o"
   "CMakeFiles/Fre2Carte.dir/src/Waypoints.cpp.o"
   "CMakeFiles/Fre2Carte.dir/src/cartesian_frenet_conversion.cpp.o"
   "CMakeFiles/Fre2Carte.dir/src/main.cpp.o"

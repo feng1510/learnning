@@ -143,6 +143,33 @@ Fre2Carte/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fre2Carte.dir/build.make CMakeFiles/Fre2Carte.dir/build
 .PHONY : Fre2Carte/fast
 
+src/TrajLog.o: src/TrajLog.cpp.o
+
+.PHONY : src/TrajLog.o
+
+# target to build an object file
+src/TrajLog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fre2Carte.dir/build.make CMakeFiles/Fre2Carte.dir/src/TrajLog.cpp.o
+.PHONY : src/TrajLog.cpp.o
+
+src/TrajLog.i: src/TrajLog.cpp.i
+
+.PHONY : src/TrajLog.i
+
+# target to preprocess a source file
+src/TrajLog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fre2Carte.dir/build.make CMakeFiles/Fre2Carte.dir/src/TrajLog.cpp.i
+.PHONY : src/TrajLog.cpp.i
+
+src/TrajLog.s: src/TrajLog.cpp.s
+
+.PHONY : src/TrajLog.s
+
+# target to generate assembly for a file
+src/TrajLog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Fre2Carte.dir/build.make CMakeFiles/Fre2Carte.dir/src/TrajLog.cpp.s
+.PHONY : src/TrajLog.cpp.s
+
 src/Waypoints.o: src/Waypoints.cpp.o
 
 .PHONY : src/Waypoints.o
@@ -233,6 +260,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Fre2Carte"
+	@echo "... src/TrajLog.o"
+	@echo "... src/TrajLog.i"
+	@echo "... src/TrajLog.s"
 	@echo "... src/Waypoints.o"
 	@echo "... src/Waypoints.i"
 	@echo "... src/Waypoints.s"
