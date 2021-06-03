@@ -4,7 +4,7 @@
  * @E-mail: feng_1510@outlook.com
  * @Date: 2021-04-29 22:03:17
  * @LastEditors: Zhiqi Feng
- * @LastEditTime: 2021-06-03 15:40:32
+ * @LastEditTime: 2021-06-03 15:50:35
 -->
 # 记录自己学习的一些笔记
 ## 1. [Git学习记录（git_learnning: 2020/02/09---2020/02/10](https://github.com/feng1510/learnning/tree/master/git_learnning)
@@ -18,4 +18,4 @@
 
 ### 4.1 [强化学习（RL）](https://github.com/feng1510/learnning/tree/master/decision_making/RL)
 
-### 4.2 [贝叶斯推理（Bayes）]()
+### 4.2 [贝叶斯推理（Bayes）](https://github.com/feng1510/learnning/tree/master/decision_making/Bayes)
