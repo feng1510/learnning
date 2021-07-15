@@ -29,6 +29,8 @@
 
 git教程：https://www.cnblogs.com/yunwangjun-python-520/p/10449362.html
 
+git配置多个邮箱和账户：https://zhuanlan.zhihu.com/p/131007696
+
 ## *1.学习目标*
 ![](images/2021-02-09-16-34-38.png)
 
